@@ -34,19 +34,19 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
+      <Characters />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Characters from './components/Characters'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld
+    Characters
   },
 
   data: () => ({
