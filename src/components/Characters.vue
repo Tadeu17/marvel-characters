@@ -1,6 +1,12 @@
 <template>
   <section class="characters-list">
-    <h3>This is a characters.vue component {{ name }}</h3>
+    <h3>This is a characters.vue</h3>
+
+    <ul>
+      <li v-for="character in characters" :key="character.id">
+        {{ character.name }}
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -10,8 +16,11 @@ import { public_key, secret_key } from '@/config.js'
 export default {
   name: 'Characters',
   data: () => ({
-    name: 'WUHUUUUUU'
+    characters: []
   }),
+  created() {
+    this.getCharacters()
+  },
   methods: {
     getCharacters: function() {
       this.axios
@@ -19,7 +28,7 @@ export default {
           `http://gateway.marvel.com/v1/public/characters?apikey=${public_key}`
         )
         .then(result => {
-          console.log(result)
+          this.characters = result.data.data.results
         })
         .catch(error => {
           console.log(error)
