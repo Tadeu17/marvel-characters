@@ -33,24 +33,14 @@
       </v-btn>
     </v-app-bar>
 
-    <v-content>
-      <Characters />
-    </v-content>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import Characters from './components/Characters'
-
 export default {
-  name: 'App',
-
-  components: {
-    Characters
-  },
-
-  data: () => ({
-    //
-  })
+  name: 'App'
 }
 </script>

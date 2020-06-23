@@ -1,4 +1,4 @@
 export default {
-  charactersList: [],
+  characters: [],
   cachedCharacters: {}
 }

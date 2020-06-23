@@ -2,9 +2,13 @@
   <section class="characters-list">
     <h3>This is a characters.vue</h3>
 
+    {{ this.$route.params.id }}
+
     <ul>
       <li v-for="character in characters" :key="character.id">
-        {{ character.name }}
+        <router-link :to="{ name: 'character', params: { id: character.id } }">
+          {{ character.name }}
+        </router-link>
       </li>
     </ul>
   </section>
