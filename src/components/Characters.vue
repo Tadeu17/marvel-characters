@@ -15,29 +15,16 @@
 </template>
 
 <script>
-import { public_key, secret_key } from '@/config.js'
+import { mapGetters } from 'vuex'
+import { FETCH_CHARACTERS } from '@/store/actions.type'
 
 export default {
   name: 'Characters',
-  data: () => ({
-    characters: []
-  }),
-  created() {
-    this.getCharacters()
+  computed: {
+    ...mapGetters(['characters'])
   },
-  methods: {
-    getCharacters: function() {
-      this.axios
-        .get(
-          `http://gateway.marvel.com/v1/public/characters?apikey=${public_key}`
-        )
-        .then(result => {
-          this.characters = result.data.data.results
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    }
+  created() {
+    this.$store.dispatch(FETCH_CHARACTERS)
   }
 }
 </script>
