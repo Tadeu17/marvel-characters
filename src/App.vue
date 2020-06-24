@@ -37,11 +37,6 @@
           </v-list-item>
         </v-list>
       </v-menu>
-
-      <!-- <v-btn to="/about" text>
-        <span class="mr-2">About</span>
-        <v-icon>mdi-help</v-icon>
-      </v-btn> -->
     </v-app-bar>
 
     <v-main>
