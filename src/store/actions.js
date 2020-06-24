@@ -1,36 +1,49 @@
 import axios from 'axios'
 import { FETCH_CHARACTERS, FETCH_CHARACTER } from './actions.type'
 import { SET_CHARACTERS, CACHE_CHARACTER } from './mutations.type'
-
+import { API_URL } from '../config.js'
 import { public_key } from '@/config.js'
 
 export default {
   initStore({ commit, dispatch }) {
-    dispatch(FETCH_CHARACTERS)
-  },
-  async [FETCH_CHARACTERS]({ commit }) {
-    try {
-      const response = await axios.get(
-        `http://gateway.marvel.com/v1/public/characters?apikey=${public_key}`
-      )
-      commit(SET_CHARACTERS, {
-        characters: response.data.data.results
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  },
-  async [FETCH_CHARACTER]({ commit }, params) {
-    try {
-      const response = await axios.get(
-        `http://gateway.marvel.com/v1/public/characters/${params.id}?apikey=${public_key}`
-      )
+    axios.defaults.baseURL = API_URL
 
-      commit(CACHE_CHARACTER, {
-        character: response.data.data.results[0]
-      })
-    } catch (error) {
-      console.log(error)
-    }
+    dispatch(FETCH_CHARACTERS).catch(error => {
+      alert(
+        'An error occured. We should redirect this to an error page $router.push(errorPage)'
+      )
+    })
+  },
+  [FETCH_CHARACTERS]({ commit }) {
+    return new Promise(function(resolve, reject) {
+      axios
+        .get(`characters?apikey=${public_key}`)
+        .then(response => {
+          commit(SET_CHARACTERS, {
+            characters: response.data.data.results
+          })
+          resolve()
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  [FETCH_CHARACTER]({ commit }, params) {
+    return new Promise(function(resolve, reject) {
+      axios
+        .get(`characters/${params.id}?apikey=${public_key}`)
+        .then(response => {
+          console.log('teste')
+
+          commit(CACHE_CHARACTER, {
+            character: response.data.data.results[0]
+          })
+          resolve()
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
