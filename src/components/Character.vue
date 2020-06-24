@@ -25,8 +25,7 @@ export default {
   data: () => ({
     character: {},
     id: -1,
-    imageUrl: '',
-    imageSize: 'standard_large.jpg'
+    imageUrl: ''
   }),
   async created() {
     this.id = this.$route.params.id
@@ -34,7 +33,6 @@ export default {
     await this.getCharacter()
 
     this.character = this.cachedCharacter(this.id)
-    this.character.imageUrl = `${this.character.thumbnail.path}/${this.imageSize}`
   },
   computed: {
     ...mapGetters(['cachedCharacter'])
@@ -42,15 +40,15 @@ export default {
   methods: {
     getCharacter() {
       let self = this
+
       return new Promise(async function(resolve, reject) {
         if (!self.cachedCharacter(self.id)) {
           await self.$store.dispatch(FETCH_CHARACTER, {
             id: self.id
           })
           resolve()
-        } else {
-          resolve()
         }
+        resolve()
       })
     }
   }

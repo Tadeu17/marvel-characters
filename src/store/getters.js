@@ -3,6 +3,6 @@ export default {
     return state.characters
   },
   cachedCharacter(state) {
-    return id => state.cachedCharacters[id]
+    return id => state.cached_characters[id]
   }
 }

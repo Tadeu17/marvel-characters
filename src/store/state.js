@@ -1,4 +1,4 @@
 export default {
   characters: [],
-  cachedCharacters: {}
+  cached_characters: {}
 }
