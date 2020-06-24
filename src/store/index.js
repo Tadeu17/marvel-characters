@@ -14,4 +14,6 @@ const store = new Vuex.Store({
   actions
 })
 
+store.dispatch('initStore') // we can use similar behaviour to load every initStore in every module by making auto-calling this for every module
+
 export default store

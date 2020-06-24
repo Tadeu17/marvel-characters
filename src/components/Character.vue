@@ -1,7 +1,7 @@
 <template>
   <section>
     <img :src="character.imageUrl" alt="char image" />
-    {{ character.imageUrl }} , {{ character.imageSize }}
+
     <h3>
       {{ character.name }}
     </h3>
@@ -9,40 +9,49 @@
     <p>
       {{ character.description }}
     </p>
+
+    <v-btn to="/">
+      Back
+    </v-btn>
   </section>
 </template>
 
 <script>
-import { public_key, secret_key } from '@/config.js'
+import { mapGetters } from 'vuex'
+import { FETCH_CHARACTER } from '@/store/actions.type'
 
 export default {
   name: 'Character',
   data: () => ({
-    character: {
-      name: '',
-      imageUrl: '',
-      imageSize: 'standard_large.jpg'
-    }
+    character: {},
+    id: -1,
+    imageUrl: '',
+    imageSize: 'standard_large.jpg'
   }),
-  created() {
-    this.getCharacter()
+  async created() {
+    this.id = this.$route.params.id
+
+    await this.getCharacter()
+
+    this.character = this.cachedCharacter(this.id)
+    this.character.imageUrl = `${this.character.thumbnail.path}/${this.imageSize}`
+  },
+  computed: {
+    ...mapGetters(['cachedCharacter'])
   },
   methods: {
-    getCharacter: function() {
-      const characterId = this.$route.params.id
-
-      this.axios
-        .get(
-          `http://gateway.marvel.com/v1/public/characters/${characterId}?apikey=${public_key}`
-        )
-        .then(result => {
-          Object.assign(this.character, result.data.data.results[0])
-          this.character.imageUrl = `${this.character.thumbnail.path}/${this.character.imageSize}`
-          console.log(this.character.imageUrl, this.character.imageSize)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+    getCharacter() {
+      let self = this
+      return new Promise(async function(resolve, reject) {
+        if (!self.cachedCharacter(self.id)) {
+          await self.$store.dispatch(FETCH_CHARACTER, {
+            id: self.id
+          })
+          resolve()
+        } else {
+          resolve()
+        }
+      })
     }
   }
 }

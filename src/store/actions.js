@@ -5,6 +5,9 @@ import { SET_CHARACTERS, CACHE_CHARACTER } from './mutations.type'
 import { public_key } from '@/config.js'
 
 export default {
+  initStore({ commit, dispatch }) {
+    dispatch(FETCH_CHARACTERS)
+  },
   async [FETCH_CHARACTERS]({ commit }) {
     try {
       const response = await axios.get(
@@ -17,13 +20,14 @@ export default {
       console.log(error)
     }
   },
-  async [FETCH_CHARACTER]({ commit }) {
+  async [FETCH_CHARACTER]({ commit }, params) {
     try {
       const response = await axios.get(
-        `http://gateway.marvel.com/v1/public/characters?apikey=${public_key}`
+        `http://gateway.marvel.com/v1/public/characters/${params.id}?apikey=${public_key}`
       )
+
       commit(CACHE_CHARACTER, {
-        character: response.data.data.results
+        character: response.data.data.results[0]
       })
     } catch (error) {
       console.log(error)

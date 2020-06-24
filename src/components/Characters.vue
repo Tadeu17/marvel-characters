@@ -22,9 +22,6 @@ export default {
   name: 'Characters',
   computed: {
     ...mapGetters(['characters'])
-  },
-  created() {
-    this.$store.dispatch(FETCH_CHARACTERS)
   }
 }
 </script>
