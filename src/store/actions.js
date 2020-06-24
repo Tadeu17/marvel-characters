@@ -34,8 +34,6 @@ export default {
       axios
         .get(`characters/${params.id}?apikey=${public_key}`)
         .then(response => {
-          console.log('teste')
-
           commit(CACHE_CHARACTER, {
             character: response.data.data.results[0]
           })
