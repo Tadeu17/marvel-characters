@@ -50,7 +50,7 @@ export default {
   name: 'App',
   data() {
     return {
-      openMenu: true
+      openMenu: false
     }
   }
 }
