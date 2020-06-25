@@ -28,7 +28,7 @@
         align-self="center"
       >
         <h3 class="text-center my-5">Comics where it stars</h3>
-        <v-carousel show-arrows>
+        <v-carousel show-arrows hide-delimiters>
           <v-carousel-item
             v-for="item in cachedCharacters[$route.params.id].detailedComics"
             :key="item.id"
