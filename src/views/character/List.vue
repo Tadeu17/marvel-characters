@@ -1,6 +1,8 @@
 <template>
   <section class="characters-list">
+    <Loader v-if="isLoading(loading)"></Loader>
     <ul
+      v-if="!isLoading(loading)"
       class="__container mx-5 mx-md-auto py-5 d-flex flex-wrap justify-space-around"
     >
       <li v-for="character in characters" :key="character.id">
@@ -12,13 +14,21 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { isLoading } from '@/utils/utils.js'
 import CharacterCard from '@/components/characters/ListCard'
+import Loader from '@/components/base/Loader'
 
 export default {
   name: 'Characters',
-  components: { CharacterCard },
+  components: { CharacterCard, Loader },
   computed: {
-    ...mapGetters(['characters'])
+    ...mapGetters(['loading', 'characters'])
+  },
+  methods: {
+    // this could and probably should be a mixin
+    isLoading() {
+      return isLoading(this.loading)
+    }
   }
 }
 </script>

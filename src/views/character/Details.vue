@@ -1,6 +1,13 @@
 <template>
   <v-container tag="section" class="details-section py-5 mx-md-auto">
-    <v-row class="fill-width flex-wrap" no-gutters justify="center">
+    <Loader v-if="isLoading(loading)"></Loader>
+
+    <v-row
+      v-if="!isLoading(loading)"
+      class="fill-width flex-wrap"
+      no-gutters
+      justify="center"
+    >
       <v-col cols="12" md="6" class="d-flex justify-center">
         <img
           class="character-image rounded-xl"
@@ -53,11 +60,14 @@
 </template>
 
 <script>
+import { isLoading } from '@/utils/utils.js'
 import { mapGetters } from 'vuex'
 import { FETCH_CHARACTER, FETCH_CHARACTER_COMICS } from '@/store/actions.type'
+import Loader from '@/components/base/Loader'
 
 export default {
   name: 'Character',
+  components: { Loader },
   data: () => ({
     character: {},
     id: -1,
@@ -72,9 +82,13 @@ export default {
     this.character = this.cachedCharacters[this.id]
   },
   computed: {
-    ...mapGetters(['cachedCharacters'])
+    ...mapGetters(['loading', 'cachedCharacters'])
   },
   methods: {
+    // this could and probably should be a mixin
+    isLoading() {
+      return isLoading(this.loading)
+    },
     getCharacter() {
       let self = this
 
@@ -90,11 +104,7 @@ export default {
     },
     getCharacterComics() {
       let self = this
-      console.log('estou dentro do que devia estar')
-
       return new Promise(async function(resolve, reject) {
-        console.log(self.cachedCharacters)
-
         if (!self.cachedCharacters[self.id].detailedComics) {
           await self.$store.dispatch(FETCH_CHARACTER_COMICS, {
             id: self.id
@@ -108,7 +118,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .details-section {
   max-width: 1200px;
 
