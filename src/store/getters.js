@@ -2,7 +2,7 @@ export default {
   characters(state) {
     return state.characters
   },
-  cachedCharacter(state) {
-    return id => state.cached_characters[id]
+  cachedCharacters(state) {
+    return state.cached_characters
   }
 }

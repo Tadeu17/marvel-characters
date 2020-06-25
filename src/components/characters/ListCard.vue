@@ -22,7 +22,6 @@ export default {
   props: {
     character: {
       type: Object,
-      required: true,
       default: function() {
         return {
           id: -1,

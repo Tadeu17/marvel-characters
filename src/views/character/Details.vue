@@ -2,17 +2,11 @@
   <section>
     <img :src="character.imageUrl" alt="char image" />
 
-    <h3>
-      {{ character.name }}
-    </h3>
+    <h3>{{ character.name }}</h3>
 
-    <p>
-      {{ character.description }}
-    </p>
+    <p>{{ character.description }}</p>
 
-    <v-btn to="/">
-      Back
-    </v-btn>
+    <v-btn to="/">Back</v-btn>
   </section>
 </template>
 
@@ -32,17 +26,17 @@ export default {
 
     await this.getCharacter()
 
-    this.character = this.cachedCharacter(this.id)
+    this.character = this.cachedCharacters[this.id]
   },
   computed: {
-    ...mapGetters(['cachedCharacter'])
+    ...mapGetters(['cachedCharacters'])
   },
   methods: {
     getCharacter() {
       let self = this
 
       return new Promise(async function(resolve, reject) {
-        if (!self.cachedCharacter(self.id)) {
+        if (!self.cachedCharacters[self.id]) {
           await self.$store.dispatch(FETCH_CHARACTER, {
             id: self.id
           })
