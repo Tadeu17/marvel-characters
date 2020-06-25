@@ -73,7 +73,7 @@ export default {
     id: -1,
     imageUrl: ''
   }),
-  async created() {
+  async mounted() {
     this.id = this.$route.params.id
 
     await this.getCharacter()
