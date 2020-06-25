@@ -1,13 +1,13 @@
 <template>
-  <v-container>
-    teste
-  </v-container>
+  <div>
+    {{ msg }}
+  </div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
 
-  data: () => {}
+  props: ['msg']
 }
 </script>
