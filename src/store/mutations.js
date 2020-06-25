@@ -1,4 +1,8 @@
-import { SET_CHARACTERS, CACHE_CHARACTER } from './mutations.type'
+import {
+  SET_CHARACTERS,
+  CACHE_CHARACTER,
+  CACHE_CHARACTER_COMICS
+} from './mutations.type'
 
 export default {
   [SET_CHARACTERS](state, params) {
@@ -14,5 +18,9 @@ export default {
     params.character.imageUrl = `${params.character.thumbnail.path}/standard_large.jpg`
 
     state.cached_characters[params.character.id] = params.character
+  },
+  [CACHE_CHARACTER_COMICS](state, params) {
+    state.cached_characters[params.character.id].detailedComics =
+      params.character.comics
   }
 }
