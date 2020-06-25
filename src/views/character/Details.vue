@@ -1,13 +1,27 @@
 <template>
-  <section>
-    <img :src="character.imageUrl" alt="char image" />
+  <v-container tag="section" class="details-section py-5 mx-md-auto">
+    <v-row class="fill-width flex-wrap" no-gutters>
+      <v-col cols="12" md="6" class="d-flex justify-center">
+        <img
+          class="character-image rounded-xl"
+          :src="character.imageUrl"
+          alt="char image"
+        />
+      </v-col>
 
-    <h3>{{ character.name }}</h3>
+      <v-col cols="12" md="6">
+        <article class="character-info mt-5">
+          <h3 class="text-center text-md-left">{{ character.name }}</h3>
 
-    <p>{{ character.description }}</p>
+          <p class="text-center text-md-left">{{ character.description }}</p>
+        </article>
+      </v-col>
 
-    <v-btn to="/">Back</v-btn>
-  </section>
+      <v-col class="my-5 d-flex justify-center">
+        <v-btn large class="back-button-size rounded-xl" to="/">Back</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -48,3 +62,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.details-section {
+  max-width: 1200px;
+
+  .character-image {
+    min-width: 200px;
+    min-height: 200px;
+  }
+
+  .back-button-size {
+    min-width: 200px !important;
+  }
+}
+</style>
