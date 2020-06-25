@@ -2,7 +2,7 @@
   <section class="characters-list">
     <Loader v-if="isLoading(loading)"></Loader>
     <ul
-      v-if="!isLoading(loading)"
+      v-else
       class="__container mx-5 mx-md-auto py-5 d-flex flex-wrap justify-space-around"
     >
       <li v-for="character in characters" :key="character.id">

@@ -2,12 +2,7 @@
   <v-container tag="section" class="details-section py-5 mx-md-auto">
     <Loader v-if="isLoading(loading)"></Loader>
 
-    <v-row
-      v-if="!isLoading(loading)"
-      class="fill-width flex-wrap"
-      no-gutters
-      justify="center"
-    >
+    <v-row v-else class="fill-width flex-wrap" no-gutters justify="center">
       <v-col cols="12" md="6" class="d-flex justify-center">
         <img
           class="character-image rounded-xl"
