@@ -62,6 +62,7 @@ export default {
   },
   [FETCH_CHARACTER_COMICS]({ commit }, params) {
     return new Promise(function(resolve, reject) {
+      commit(SET_LOADING, true)
       axios
         .get(`characters/${params.id}/comics?apikey=${public_key}`)
         .then(response => {
@@ -71,9 +72,11 @@ export default {
               comics: response.data.data.results
             }
           })
+          commit(SET_LOADING, false)
           resolve()
         })
         .catch(error => {
+          commit(SET_LOADING, false)
           reject(error)
         })
     })
