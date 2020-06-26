@@ -3,7 +3,8 @@ const CHARACTERS = [
     id: 1011334,
     name: '3-D Man',
     description: '',
-    imageUrl: 'http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/standard_large.jpg',
+    imageUrl:
+      'http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/standard_large.jpg',
     thumbnail: {
       path: 'http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784'
     }
@@ -11,7 +12,8 @@ const CHARACTERS = [
   {
     id: 1017100,
     name: 'A-Bomb (HAS)',
-    imageUrl: 'http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16/standard_large.jpg',
+    imageUrl:
+      'http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16/standard_large.jpg',
     thumbnail: {
       path: 'http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16'
     },
