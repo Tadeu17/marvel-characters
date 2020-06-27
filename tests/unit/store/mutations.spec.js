@@ -15,11 +15,7 @@ describe('Mutations', () => {
     })
 
     expect(state.characters).toMatchObject(mockData.CHARACTERS)
-    expect(state.characters[0].imageUrl).toBe(
-      mockData.CHARACTERS[0].imageUrl
-    )
-    expect(state.characters[1].imageUrl).toBe(
-      mockData.CHARACTERS[1].imageUrl
-    )
+    expect(state.characters[0].imageUrl).toBe(mockData.CHARACTERS[0].imageUrl)
+    expect(state.characters[1].imageUrl).toBe(mockData.CHARACTERS[1].imageUrl)
   })
 })
