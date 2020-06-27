@@ -12,7 +12,6 @@ describe('base/ListCard', () => {
     expect(cardTitle.text()).toBe('3-D Man')
 
     const cardImage = wrapper.get('.character-card-container img')
-    console.log(cardTitle, cardImage)
     expect(cardImage.attributes('src')).toBe('an image url')
   })
 })
