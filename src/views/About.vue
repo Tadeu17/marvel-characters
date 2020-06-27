@@ -14,14 +14,19 @@
       </li>
 
       <li>
-        Some of the main topics that were address was keeping things cached in
-        some way, and styling wise allowing responsiveness in a simple way
-      </li>
-
-      <li>
-        Testing is a not so good developed skill so the time and project was
-        also used to deepen the knowledge on the topic and practice it at the
-        same time
+        Some of the main topics addressed were:
+        <ul>
+          <li>
+            keeping things cached in the store
+          </li>
+          <li>
+            styling wise allowing responsiveness in a simple way
+          </li>
+          <li>
+            configuration and creation of basic tests to actions, mutations,
+            getters in the store, and to the built component
+          </li>
+        </ul>
       </li>
 
       <li>
@@ -34,7 +39,9 @@
         Some of those improvements would be for example the creation of a api
         service properly configured, adding specific generic styling and
         actually conceptualizing a more interesting UI/UX experience (this
-        wasn't the focus at all in this project)
+        wasn't the focus at all in this project). Modularizing the store for
+        future development (the current project doesn't need modularization)
+        would be interesting as well
       </li>
     </ul>
   </section>
