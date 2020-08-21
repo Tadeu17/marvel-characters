@@ -85,29 +85,19 @@ export default {
       return isLoading(this.loading)
     },
     getCharacter() {
-      let self = this
-
-      return new Promise(async function(resolve, reject) {
-        if (!self.cachedCharacters[self.id]) {
-          await self.$store.dispatch(FETCH_CHARACTER, {
-            id: self.id
-          })
-          resolve()
-        }
-        resolve()
-      })
+      if (!this.cachedCharacters[this.id]) {
+        return this.$store.dispatch(FETCH_CHARACTER, {
+          id: this.id
+        })
+      }
     },
     getCharacterComics() {
-      let self = this
-      return new Promise(async function(resolve, reject) {
-        if (!self.cachedCharacters[self.id].detailedComics) {
-          await self.$store.dispatch(FETCH_CHARACTER_COMICS, {
-            id: self.id
-          })
-          resolve()
-        }
-        resolve()
-      })
+      console.log(this.cachedCharacters)
+      if (!this.cachedCharacters[this.id].detailedComics) {
+        return this.$store.dispatch(FETCH_CHARACTER_COMICS, {
+          id: this.id
+        })
+      }
     }
   }
 }
