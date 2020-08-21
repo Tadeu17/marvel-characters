@@ -92,7 +92,6 @@ export default {
       }
     },
     getCharacterComics() {
-      console.log(this.cachedCharacters)
       if (!this.cachedCharacters[this.id].detailedComics) {
         return this.$store.dispatch(FETCH_CHARACTER_COMICS, {
           id: this.id
